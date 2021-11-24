@@ -1,57 +1,44 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.red-border {
-  border: 1px solid red;
-}
-
-.green-border {
-  border: 1px solid green;
-}
-
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  }
-}
-
-.App-header {
+/* Login page style */
+.login-page-body {
   align-items: center;
-  background-color: #282c34;
-  color: white;
+  background-color: white;
   display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
   justify-content: center;
   min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.login-page-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 14px;
+  margin: 8px 0;
+  padding: 12px 20px;
+  width: 250px;
 }
 
-@keyframes shake {
-
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
+.login-page-label {
+  display: flex;
+  flex-direction: column;
 }
+
+.login-page-fieldset {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page-enter-button {
+  background-color: rgba(15, 163, 107, 255);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 5px;
+  padding: 15px 32px;
+  text-align: center;
+  width: 250px;
+}
+
+/* Feedback page style */
