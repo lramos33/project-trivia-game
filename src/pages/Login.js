@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { addLocalStorage, getToken } from '../services/funcs';
 
 class Login extends Component {
@@ -53,15 +54,17 @@ class Login extends Component {
               onChange={ this.handleChange }
             />
           </label>
-          <button
-            className="login-page-enter-button"
-            data-testid="btn-play"
-            type="button"
-            disabled={ isDisable }
-            onClick={ this.onButtonClick }
-          >
-            Jogar
-          </button>
+          <Link to="/gaming">
+            <button
+              className="login-page-enter-button"
+              data-testid="btn-play"
+              type="button"
+              disabled={ isDisable }
+              onClick={ this.onButtonClick }
+            >
+              Jogar
+            </button>
+          </Link>
         </fieldset>
       </body>
     );
