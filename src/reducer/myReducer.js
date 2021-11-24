@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-
+  questions: [],
 };
 
 const myReducer = (state = INITIAL_STATE, action) => {

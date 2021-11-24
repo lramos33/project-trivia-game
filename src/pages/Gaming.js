@@ -15,7 +15,6 @@ export default class Gaming extends Component {
           <p data-test-id="question-text">question</p>
         </div>
         <div className="answer-card-game">
-          <
         </div>
       </div>
     );
