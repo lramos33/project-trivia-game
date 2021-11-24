@@ -13,11 +13,16 @@ export const addLocalStorage = (name, email) => {
   localStorage.setItem('state', userStr);
 };
 
-export const getToken = async () => {
+export const setToken = async () => {
   const token = await fetch('https://opentdb.com/api_token.php?command=request')
     .then((res) => res.json())
     .then((res) => res.token);
   localStorage.setItem('token', token);
+};
+
+export const getToken = () => {
+  const token = localStorage.getItem('token');
+  return token;
 };
 
 export const getImage = async (email) => {
