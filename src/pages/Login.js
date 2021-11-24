@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addLocalStorage } from '../services/funcs';
+import { addLocalStorage, getToken } from '../services/funcs';
 
 class Login extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Login extends Component {
   onButtonClick() {
     const { name, email } = this.state;
     addLocalStorage(name, email);
+    getToken();
   }
 
   handleChange({ target: { name, value } }) {
