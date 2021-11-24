@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 
-class Feedback extends Component {
+export default class Gaming extends Component {
   render() {
     return (
-      <Header />
+      <div>
+        <Header />
+      </div>
     );
   }
 }
-
-export default Feedback;
