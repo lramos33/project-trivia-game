@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
+import { addLocalStorage } from '../services/funcs';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
     this.state = {
       name: '',
       email: '',
     };
+  }
+
+  onButtonClick() {
+    const { name, email } = this.state;
+    addLocalStorage(name, email);
   }
 
   handleChange({ target: { name, value } }) {
@@ -21,27 +28,41 @@ class Login extends Component {
       isDisable = false;
     }
     return (
-      <div>
-        <input
-          data-testid="input-player-name"
-          name="name"
-          value={ name }
-          onChange={ this.handleChange }
-        />
-        <input
-          data-testid="input-gravatar-email"
-          name="email"
-          value={ email }
-          onChange={ this.handleChange }
-        />
-        <button
-          data-testid="btn-play"
-          type="button"
-          disabled={ isDisable }
-        >
-          Jogar
-        </button>
-      </div>
+      <body className="login-page-body">
+        <fieldset className="login-page-fieldset">
+          <label htmlFor="name" className="login-page-label">
+            Nome:
+            <input
+              className="login-page-input"
+              data-testid="input-player-name"
+              id="name"
+              name="name"
+              value={ name }
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="email" className="login-page-label">
+            Email:
+            <input
+              className="login-page-input"
+              data-testid="input-gravatar-email"
+              id="Email"
+              name="email"
+              value={ email }
+              onChange={ this.handleChange }
+            />
+          </label>
+          <button
+            className="login-page-enter-button"
+            data-testid="btn-play"
+            type="button"
+            disabled={ isDisable }
+            onClick={ this.onButtonClick }
+          >
+            Jogar
+          </button>
+        </fieldset>
+      </body>
     );
   }
 }
