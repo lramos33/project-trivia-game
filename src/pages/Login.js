@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { addLocalStorage, setToken } from '../services/funcs';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getQuestions } from '../actions';
+import { addLocalStorage } from '../services/funcs';
 
 class Login extends Component {
   constructor(props) {
@@ -15,8 +18,9 @@ class Login extends Component {
 
   onButtonClick() {
     const { name, email } = this.state;
+    const { GetQuestions } = this.props;
+    GetQuestions();
     addLocalStorage(name, email);
-    setToken();
   }
 
   handleChange({ target: { name, value } }) {
@@ -71,4 +75,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  GetQuestions: () => dispatch(getQuestions()),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
+
+Login.propTypes = {
+  GetQuestions: PropTypes.func.isRequired,
+};
