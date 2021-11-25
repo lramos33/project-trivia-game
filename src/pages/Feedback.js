@@ -19,10 +19,11 @@ class Feedback extends Component {
 
   // Define qual vai ser a mensagem de feedback e add ao estado
   getInformation() {
-    const { player: { assertions } } = getLocalStorageItens();
+    const { player: { assertions, score } } = getLocalStorageItens();
     const three = 3;
+    console.log(getLocalStorageItens());
     const feedback = assertions < three ? 'Podia ser melhor...' : 'Mandou bem!';
-    this.setState({ feedback });
+    this.setState({ feedback, assertions, score });
   }
 
   render() {
