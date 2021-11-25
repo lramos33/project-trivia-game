@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getQuestions } from '../actions';
 import { addLocalStorage } from '../services/funcs';
+import triviaImage from '../trivia.png';
 
 class Login extends Component {
   constructor(props) {
@@ -36,8 +37,9 @@ class Login extends Component {
     return (
       <body className="login-page-body">
         <fieldset className="login-page-fieldset">
+          <img src={ triviaImage } alt="triviaImage" className="trivia-image" />
           <label htmlFor="name" className="login-page-label">
-            Nome:
+            Nome
             <input
               className="login-page-input"
               data-testid="input-player-name"
@@ -48,7 +50,7 @@ class Login extends Component {
             />
           </label>
           <label htmlFor="email" className="login-page-label">
-            Email:
+            Email
             <input
               className="login-page-input"
               data-testid="input-gravatar-email"

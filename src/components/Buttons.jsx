@@ -19,7 +19,7 @@ const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
     <button
       data-testid="correct-answer"
       type="button"
-      className={ `${couter >= 1 || disable ? 'correct' : ''}` }
+      className={ `${couter >= 1 || disable ? 'correct' : ''} answer-button` }
       disabled={ couter >= 1 || disable }
       onClick={ onBotClick }
     >
@@ -32,7 +32,7 @@ const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
       key={ name }
       data-testid={ `wrong-answer-${index}` }
       type="button"
-      className={ `${couter >= 1 || disable ? 'incorrect' : ''}` }
+      className={ `${couter >= 1 || disable ? 'incorrect' : ''} answer-button` }
       onClick={ onBotClick }
       disabled={ couter >= 1 || disable }
     >
@@ -45,7 +45,7 @@ const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
   const shuffled = allAnswers.sort(() => Math.random() - metade);
 
   return (
-    <div>
+    <div className="shuffled-buttons">
       { shuffled }
     </div>
   );
