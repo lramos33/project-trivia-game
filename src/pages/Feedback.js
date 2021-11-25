@@ -8,6 +8,8 @@ class Feedback extends Component {
     super(props);
     this.state = {
       feedback: '',
+      assertions: 0,
+      score: 0,
     };
   }
 
@@ -16,18 +18,20 @@ class Feedback extends Component {
   }
 
   getInformations() {
-    const { player: { assertions } } = getLocalStorageItens();
-    const treis = 3;
-    const feedback = assertions < treis ? 'Podia ser melhor...' : 'Mandou bem!';
-    this.setState({ feedback });
+    const { player: { assertions, score } } = getLocalStorageItens();
+    console.log(getLocalStorageItens());
+    const tres = 3;
+    const feedback = assertions < tres ? 'Podia ser melhor...' : 'Mandou bem!';
+    this.setState({ feedback, assertions, score });
   }
 
   render() {
-    const { feedback } = this.state;
+    const { feedback, assertions, score } = this.state;
     return (
       <>
         <Header />
         <div>
+<<<<<<< HEAD
           <h2 data-testid="feedback-text">
             { feedback }
           </h2>
@@ -47,6 +51,25 @@ class Feedback extends Component {
               Ranking
             </button>
           </Link>
+=======
+          <div className="feedback-div">
+            <h2>
+              {'Você acertou '}
+              <span data-testid="feedback-total-question">{ assertions }</span>
+              {' perguntas '}
+              <span>
+                {' e fez '}
+              </span>
+              <span data-testid="feedback-total-score">
+                { score }
+              </span>
+              <span>{' pontos! '}</span>
+              <span data-testid="feedback-text">
+                { feedback }
+              </span>
+            </h2>
+          </div>
+>>>>>>> aa7b7b14f1b8f2be44a06d63182e58e6d3122153
         </div>
       </>
     );
