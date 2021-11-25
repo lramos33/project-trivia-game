@@ -6,9 +6,7 @@ import { getLocalStorageItens, getImage } from '../services/funcs';
 class Header extends Component {
   constructor(props) {
     super(props);
-
     this.getInfo = this.getInfo.bind(this);
-
     this.state = {
       name: '',
       email: '',
@@ -47,12 +45,12 @@ class Header extends Component {
             className="avatar-image"
           />
           <p>
-            Jogador:
+            { 'Jogador: ' }
             <span data-testid="header-player-name">{ name }</span>
           </p>
         </div>
         <p>
-          Pontos:
+          { 'Pontos: ' }
           <span data-testid="header-score">{ score }</span>
         </p>
       </header>

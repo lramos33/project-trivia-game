@@ -34,9 +34,9 @@ class Timer extends Component {
 
   runTimer() {
     const { ChangeDisable, ChangeTime } = this.props;
-    const segundo = 1000;
-    const trinta = 30;
-    let number = trinta;
+    const seconds = 1000;
+    const thirty = 30;
+    let number = thirty;
     this.timer = setInterval(() => {
       const { disable } = this.props;
       number -= 1;
@@ -47,7 +47,7 @@ class Timer extends Component {
         return;
       }
       this.setState({ counter: number });
-    }, segundo);
+    }, seconds);
   }
 
   render() {
@@ -65,11 +65,11 @@ const mapDispatchToProps = (dispatch) => ({
   ChangeTime: (time) => dispatch(changeTime(time)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Timer);
-
 Timer.propTypes = {
   ChangeDisable: PropTypes.func.isRequired,
   ChangeTime: PropTypes.func.isRequired,
   position: PropTypes.number.isRequired,
   disable: PropTypes.bool.isRequired,
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
