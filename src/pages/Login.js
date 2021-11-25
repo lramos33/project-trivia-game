@@ -6,7 +6,6 @@ import { getQuestions } from '../actions';
 import { addLocalStorage } from '../services/funcs';
 import triviaImage from '../trivia.png';
 
-
 class Login extends Component {
   constructor(props) {
     super(props);
