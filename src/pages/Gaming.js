@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
 import { nextQuestion } from '../actions';
@@ -27,8 +28,9 @@ class Gaming extends Component {
   }
 
   renderPage() {
-    const { questions, position, NextQuestion } = this.props;
+    const { questions, position, NextQuestion, disable } = this.props;
     const { category, question } = questions[position];
+    const maxQuestions = 4;
 
     return (
       <div>
@@ -47,12 +49,25 @@ class Gaming extends Component {
           </div>
         </div>
         <Timer />
-        <button
-          type="button"
-          onClick={ NextQuestion }
-        >
-          Próxima
-        </button>
+        { disable && position < maxQuestions && (
+          <button
+            data-testid="btn-next"
+            type="button"
+            onClick={ NextQuestion }
+          >
+            Próxima
+          </button>
+        ) }
+        { position >= maxQuestions && (
+          <Link to="/feedback">
+            <button
+              data-testid="btn-next"
+              type="button"
+            >
+              Finalizar
+            </button>
+          </Link>
+        ) }
       </div>
     );
   }

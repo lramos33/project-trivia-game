@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getLocalStorageItens, getImage } from '../services/funcs';
 
 class Header extends Component {
@@ -19,6 +21,13 @@ class Header extends Component {
     this.getInfo();
   }
 
+  componentDidUpdate(prevProps) {
+    const { time } = this.props;
+    if (prevProps.time !== time) {
+      this.getInfo();
+    }
+  }
+
   async getInfo() {
     const { email } = this.state;
     const { player: { name, gravatarEmail, score } } = getLocalStorageItens();
@@ -37,12 +46,24 @@ class Header extends Component {
             data-testid="header-profile-picture"
             className="avatar-image"
           />
-          <p data-testid="header-player-name">{ `Jogador: ${name}` }</p>
+          <p>
+            Jogador:
+            <span data-testid="header-player-name">{ name }</span>
+          </p>
         </div>
-        <p data-testid="header-score">{ `Pontos: ${score}` }</p>
+        <p>
+          Pontos:
+          <span data-testid="header-score">{ score }</span>
+        </p>
       </header>
     );
   }
 }
 
-export default Header;
+const mapStateToProps = ({ myReducer: { time } }) => ({ time });
+
+export default connect(mapStateToProps)(Header);
+
+Header.propTypes = {
+  time: PropTypes.number.isRequired,
+};

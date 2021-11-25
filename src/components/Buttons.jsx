@@ -1,11 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { addPoints } from '../services/funcs';
 import { changeDisable } from '../actions';
 
-const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
-  const [couter, setCouter] = useState(0);
+const correctAnswer = (difficulty, time) => {
+  const treis = 3;
+  let hold;
+  switch (difficulty) {
+  case 'easy':
+    hold = 1;
+    break;
+  case 'medium':
+    hold = 2;
+    break;
+  case 'hard':
+    hold = treis;
+    break;
+  default:
+    hold = 0;
+  }
+  const dez = 10;
+  const sum = dez + (Number(time) * hold);
+  addPoints(sum);
+};
 
+const Buttons = (
+  { correct, incorrects, disable, position, ChangeDisable, time, questions },
+) => {
+  const [couter, setCouter] = useState(0);
+  const { difficulty } = questions[position];
   useEffect(() => {
     setCouter(0);
   }, [position]);
@@ -21,12 +45,14 @@ const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
       type="button"
       className={ `${couter >= 1 || disable ? 'correct' : ''} answer-button` }
       disabled={ couter >= 1 || disable }
-      onClick={ onBotClick }
+      onClick={ () => {
+        correctAnswer(difficulty, time);
+        onBotClick();
+      } }
     >
       { correct }
     </button>
   );
-
   const incorrectsBot = incorrects.map((name, index) => (
     <button
       key={ name }
@@ -39,7 +65,6 @@ const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
       { name }
     </button>
   ));
-
   const metade = 0.5;
   const allAnswers = [correctBot, ...incorrectsBot];
   const shuffled = allAnswers.sort(() => Math.random() - metade);
@@ -51,7 +76,9 @@ const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
   );
 };
 
-const mapStateToProps = ({ myReducer: { position } }) => ({ position });
+const mapStateToProps = ({ myReducer: { position, questions, time } }) => (
+  { position, questions, time }
+);
 
 const mapDispatchToProps = (dispatch) => ({
   ChangeDisable: (disable) => dispatch(changeDisable(disable)),
@@ -64,5 +91,7 @@ Buttons.propTypes = {
   position: PropTypes.number.isRequired,
   incorrects: PropTypes.arrayOf(PropTypes.string).isRequired,
   disable: PropTypes.bool.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   ChangeDisable: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
 };
