@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Timer from '../components/Timer';
 import { nextQuestion } from '../actions';
 import Buttons from '../components/Buttons';
+import { addRanking } from '../services/funcs';
 
 class Gaming extends Component {
   // Gera os botões de perguntas
@@ -63,6 +64,7 @@ class Gaming extends Component {
             <button
               data-testid="btn-next"
               type="button"
+              onClick={ addRanking }
             >
               Finalizar
             </button>
