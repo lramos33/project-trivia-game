@@ -5,7 +5,7 @@ import { addPoints } from '../services/funcs';
 import { changeDisable } from '../actions';
 
 const correctAnswer = (difficulty, time) => {
-  const treis = 3;
+  const tres = 3;
   let hold;
   switch (difficulty) {
   case 'easy':
@@ -15,7 +15,7 @@ const correctAnswer = (difficulty, time) => {
     hold = 2;
     break;
   case 'hard':
-    hold = treis;
+    hold = tres;
     break;
   default:
     hold = 0;
