@@ -43,9 +43,9 @@ const Buttons = (
     setCounter(counter + 1);
     ChangeDisable(true);
   };
-
   const correctButton = (
     <button
+      key={ 3 }
       data-testid="correct-answer"
       type="button"
       className={ `${counter >= 1 || disable ? 'correct' : ''} answer-button` }
@@ -61,7 +61,7 @@ const Buttons = (
 
   const incorrectButtons = incorrect.map((name, index) => (
     <button
-      key={ name }
+      key={ index }
       data-testid={ `wrong-answer-${index}` }
       type="button"
       className={ `${counter >= 1 || disable ? 'incorrect' : ''} answer-button` }

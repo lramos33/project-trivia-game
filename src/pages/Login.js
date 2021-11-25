@@ -67,7 +67,7 @@ class Login extends Component {
     let isDisable = true;
     if (name.length && email.length) isDisable = false;
     return (
-      <body className="login-page-body">
+      <div className="login-page-body">
         <fieldset className="login-page-fieldset">
           <img src={ triviaImage } alt="triviaImage" className="trivia-image" />
           {this.nameEmailLabels()}
@@ -92,7 +92,7 @@ class Login extends Component {
             </button>
           </Link>
         </fieldset>
-      </body>
+      </div>
     );
   }
 }

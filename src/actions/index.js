@@ -3,6 +3,7 @@ import { setToken } from '../services/funcs';
 export const ADD_QUESTIONS = 'ADD_QUESTIONS';
 export const NEXT_QUESTIONS = 'NEXT_QUESTION';
 export const CHANGE_DISABLE = 'CHANGE_DISABLE';
+export const CLEAR_STATE = 'CLEAR_STATE';
 export const TIME = 'TIME';
 
 export const addQuestions = (questions) => ({
@@ -15,6 +16,8 @@ export const changeDisable = (disable) => ({ type: CHANGE_DISABLE, disable });
 export const nextQuestion = () => ({ type: NEXT_QUESTIONS });
 
 export const changeTime = (time) => ({ type: TIME, time });
+
+export const clearState = () => ({ type: CLEAR_STATE });
 
 export const getQuestions = () => async (dispatch) => {
   const token = await setToken();

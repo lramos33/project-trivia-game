@@ -32,7 +32,6 @@ class Gaming extends Component {
     const { questions, position, NextQuestion, disable } = this.props;
     const { category, question } = questions[position];
     const maxQuestions = 4;
-
     return (
       <div>
         <Header />
@@ -95,8 +94,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 Gaming.propTypes = {
   NextQuestion: PropTypes.func.isRequired,
-  questions: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  position: PropTypes.number.isRequired,
   disable: PropTypes.bool.isRequired,
 };
 

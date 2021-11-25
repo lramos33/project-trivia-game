@@ -107,24 +107,56 @@
 }
 
 .answer-button {
+  border-radius: 10px;
+  cursor: pointer;
   font-size: 20px;
   margin: 15px;
-  padding: 15px;
+  padding: 15px 32px;
 }
 
 .correct {
+  background-color: rgb(170, 255, 170);
   border: 3px solid rgb(6, 240, 15);
+  border-radius: 10px;
   color: black;
+  cursor: not-allowed;
   font-size: 20px;
 }
 
 .incorrect {
+  background-color: rgb(255, 170, 170);
   border: 3px solid red;
+  border-radius: 10px;
   color: black;
+  cursor: not-allowed;
   font-size: 20px;
 }
 
-/* feedback Styles */
+/* Feedback page style */
 .feedback-div {
+  align-items: center;
   display: flex;
+  flex-direction: column;
+}
+
+.feedback-gif {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 500px;
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.feedback-buttons {
+  background-color: rgba(15, 163, 107, 255);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px 32px;
+  width: 250px;
 }
