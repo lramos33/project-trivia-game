@@ -42,12 +42,13 @@ export const getLocalStorageItens = () => {
 
 export const addPoints = (points) => {
   const { player } = getLocalStorageItens();
-  const { score } = player;
+  const { score, assertions } = player;
   const sum = Number(score) + Number(points);
   console.log(sum, points);
   const newObj = {
     player: {
       ...player,
+      assertions: Number(assertions) + 1,
       score: sum,
     },
   };

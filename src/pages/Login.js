@@ -31,9 +31,7 @@ class Login extends Component {
   render() {
     const { name, email } = this.state;
     let isDisable = true;
-    if (name.length && email.length) {
-      isDisable = false;
-    }
+    if (name.length && email.length) isDisable = false;
     return (
       <body className="login-page-body">
         <fieldset className="login-page-fieldset">
