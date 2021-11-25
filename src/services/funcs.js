@@ -13,11 +13,24 @@ export const addLocalStorage = (name, email) => {
   localStorage.setItem('state', userStr);
 };
 
+export const createRanking = () => {
+  const ranking = [];
+  const hold = JSON.stringify(ranking);
+  localStorage.setItem('ranking', hold);
+};
+
+export const getRanking = () => {
+  const arrayStr = localStorage.getItem('ranking');
+  const array = JSON.parse(arrayStr);
+  return array;
+};
+
 export const setToken = async () => {
   const token = await fetch('https://opentdb.com/api_token.php?command=request')
     .then((res) => res.json())
     .then((res) => res.token);
   localStorage.setItem('token', token);
+  createRanking();
   return token;
 };
 
@@ -38,6 +51,14 @@ export const getLocalStorageItens = () => {
   const userStr = localStorage.getItem('state');
   const user = JSON.parse(userStr);
   return user;
+};
+
+export const addRanking = () => {
+  const user = getLocalStorageItens();
+  const ranking = getRanking();
+  const newRanking = [...ranking, user];
+  const hold = JSON.stringify(newRanking);
+  localStorage.setItem('ranking', hold);
 };
 
 export const addPoints = (points) => {

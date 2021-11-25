@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { getLocalStorageItens } from '../services/funcs';
 
@@ -47,6 +48,22 @@ class Feedback extends Component {
               </span>
             </h2>
           </div>
+          <Link to="/">
+            <button
+              data-testid="btn-play-again"
+              type="button"
+            >
+              Jogar novamente
+            </button>
+          </Link>
+          <Link to="/ranking">
+            <button
+              data-testid="btn-ranking"
+              type="button"
+            >
+              Ranking
+            </button>
+          </Link>
         </div>
       </>
     );
