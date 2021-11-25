@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeDisable } from '../actions';
+import { changeDisable, changeTime } from '../actions';
 
 class Timer extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class Timer extends Component {
   }
 
   runTimer() {
-    const { ChangeDisable } = this.props;
+    const { ChangeDisable, ChangeTime } = this.props;
     const segundo = 1000;
     const trinta = 30;
     let number = trinta;
@@ -41,8 +41,9 @@ class Timer extends Component {
       const { disable } = this.props;
       number -= 1;
       if (number < 0 || disable) {
-        clearInterval(this.timer);
+        ChangeTime(number);
         ChangeDisable(true);
+        clearInterval(this.timer);
         return;
       }
       this.setState({ counter: number });
@@ -61,12 +62,14 @@ const mapStateToProps = ({ myReducer: { position, disable } }) => ({ position, d
 
 const mapDispatchToProps = (dispatch) => ({
   ChangeDisable: (disable) => dispatch(changeDisable(disable)),
+  ChangeTime: (time) => dispatch(changeTime(time)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);
 
 Timer.propTypes = {
   ChangeDisable: PropTypes.func.isRequired,
+  ChangeTime: PropTypes.func.isRequired,
   position: PropTypes.number.isRequired,
   disable: PropTypes.bool.isRequired,
 };

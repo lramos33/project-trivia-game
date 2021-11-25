@@ -40,6 +40,21 @@ export const getLocalStorageItens = () => {
   return user;
 };
 
+export const addPoints = (points) => {
+  const { player } = getLocalStorageItens();
+  const { score } = player;
+  const sum = Number(score) + Number(points);
+  console.log(sum, points);
+  const newObj = {
+    player: {
+      ...player,
+      score: sum,
+    },
+  };
+  const objStr = JSON.stringify(newObj);
+  localStorage.setItem('state', objStr);
+};
+
 export const getQuestionAndAnswers = async () => {
   const amount = 5;
   const token = getToken();

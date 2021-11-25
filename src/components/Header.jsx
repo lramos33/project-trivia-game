@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getLocalStorageItens, getImage } from '../services/funcs';
 
 class Header extends Component {
@@ -19,6 +21,13 @@ class Header extends Component {
     this.getInfo();
   }
 
+  componentDidUpdate(prevProps) {
+    const { time } = this.props;
+    if (prevProps.time !== time) {
+      this.getInfo();
+    }
+  }
+
   async getInfo() {
     const { email } = this.state;
     const { player: { name, gravatarEmail, score } } = getLocalStorageItens();
@@ -29,27 +38,26 @@ class Header extends Component {
   render() {
     const { name, score, img } = this.state;
     return (
-      <header>
-        <div>
-          <img src={ img } alt="avatar" data-testid="header-profile-picture" />
-          <p data-testid="header-player-name">
-            Nome:
-            <span data-testid="header-player-name">
-              { name }
-            </span>
-          </p>
+      <header className="header-component">
+        <div className="player-data">
+          <img
+            src={ img }
+            alt="avatar"
+            data-testid="header-profile-picture"
+            className="avatar-image"
+          />
+          <p data-testid="header-player-name">{ `Jogador: ${name}` }</p>
         </div>
-        <div>
-          <p>
-            Pontos:
-            <span data-testid="header-score">
-              { score }
-            </span>
-          </p>
-        </div>
+        <p data-testid="header-score">{ `Pontos: ${score}` }</p>
       </header>
     );
   }
 }
 
-export default Header;
+const mapStateToProps = ({ myReducer: { time } }) => ({ time });
+
+export default connect(mapStateToProps)(Header);
+
+Header.propTypes = {
+  time: PropTypes.number.isRequired,
+};

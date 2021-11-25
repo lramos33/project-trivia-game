@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
 import { nextQuestion } from '../actions';
@@ -27,26 +28,46 @@ class Gaming extends Component {
   }
 
   renderPage() {
-    const { questions, position, NextQuestion } = this.props;
+    const { questions, position, NextQuestion, disable } = this.props;
     const { category, question } = questions[position];
+    const maxQuestions = 4;
 
     return (
       <div>
         <Header />
+        <div className="question-answer-content">
+          <div className="question-card">
+            <p data-testid="question-category" className="question-category">
+              { category }
+            </p>
+            <p data-testid="question-text" className="question-content">
+              { question }
+            </p>
+          </div>
+          <div className="answers-card">
+            { this.alternativeButtonGenerator() }
+          </div>
+        </div>
         <Timer />
-        <div className="question-card-game">
-          <p data-testid="question-category">{ category }</p>
-          <p data-testid="question-text">{ question }</p>
-        </div>
-        <div className="answers-card-game">
-          { this.alternativeButtonGenerator() }
-        </div>
-        <button
-          type="button"
-          onClick={ NextQuestion }
-        >
-          Próxima
-        </button>
+        { disable && position < maxQuestions && (
+          <button
+            data-testid="btn-next"
+            type="button"
+            onClick={ NextQuestion }
+          >
+            Próxima
+          </button>
+        ) }
+        { position >= maxQuestions && (
+          <Link to="/feedback">
+            <button
+              data-testid="btn-next"
+              type="button"
+            >
+              Finalizar
+            </button>
+          </Link>
+        ) }
       </div>
     );
   }

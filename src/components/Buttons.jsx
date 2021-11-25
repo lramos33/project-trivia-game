@@ -1,17 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { addPoints } from '../services/funcs';
 import { changeDisable } from '../actions';
 
-const correctAnswer = (questions, position) => {
-  const { difficulty } = questions[position];
+const correctAnswer = (difficulty, time) => {
+  const treis = 3;
+  let hold;
+  switch (difficulty) {
+  case 'easy':
+    hold = 1;
+    break;
+  case 'medium':
+    hold = 2;
+    break;
+  case 'hard':
+    hold = treis;
+    break;
+  default:
+    hold = 0;
+  }
+  const dez = 10;
+  const sum = dez + (Number(time) * hold);
+  addPoints(sum);
 };
 
 const Buttons = (
-  { correct, incorrects, disable, position, ChangeDisable, questions },
+  { correct, incorrects, disable, position, ChangeDisable, time, questions },
 ) => {
   const [couter, setCouter] = useState(0);
-
+  const { difficulty } = questions[position];
   useEffect(() => {
     setCouter(0);
   }, [position]);
@@ -25,9 +43,12 @@ const Buttons = (
     <button
       data-testid="correct-answer"
       type="button"
-      className={ `${couter >= 1 || disable ? 'correct' : ''}` }
+      className={ `${couter >= 1 || disable ? 'correct' : ''} answer-button` }
       disabled={ couter >= 1 || disable }
-      onClick={ onBotClick }
+      onClick={ () => {
+        correctAnswer(difficulty, time);
+        onBotClick();
+      } }
     >
       { correct }
     </button>
@@ -37,7 +58,7 @@ const Buttons = (
       key={ name }
       data-testid={ `wrong-answer-${index}` }
       type="button"
-      className={ `${couter >= 1 || disable ? 'incorrect' : ''}` }
+      className={ `${couter >= 1 || disable ? 'incorrect' : ''} answer-button` }
       onClick={ onBotClick }
       disabled={ couter >= 1 || disable }
     >
@@ -47,11 +68,16 @@ const Buttons = (
   const metade = 0.5;
   const allAnswers = [correctBot, ...incorrectsBot];
   const shuffled = allAnswers.sort(() => Math.random() - metade);
-  return (<div>{ shuffled }</div>);
+
+  return (
+    <div className="shuffled-buttons">
+      { shuffled }
+    </div>
+  );
 };
 
-const mapStateToProps = ({ myReducer: { position, questions } }) => (
-  { position, questions }
+const mapStateToProps = ({ myReducer: { position, questions, time } }) => (
+  { position, questions, time }
 );
 
 const mapDispatchToProps = (dispatch) => ({
@@ -65,5 +91,7 @@ Buttons.propTypes = {
   position: PropTypes.number.isRequired,
   incorrects: PropTypes.arrayOf(PropTypes.string).isRequired,
   disable: PropTypes.bool.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   ChangeDisable: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
 };
