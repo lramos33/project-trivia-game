@@ -31,27 +31,6 @@ class Feedback extends Component {
       <>
         <Header />
         <div>
-<<<<<<< HEAD
-          <h2 data-testid="feedback-text">
-            { feedback }
-          </h2>
-          <Link to="/">
-            <button
-              data-testid="btn-play-again"
-              type="button"
-            >
-              Jogar novamente
-            </button>
-          </Link>
-          <Link to="/ranking">
-            <button
-              data-testid="btn-ranking"
-              type="button"
-            >
-              Ranking
-            </button>
-          </Link>
-=======
           <div className="feedback-div">
             <h2>
               {'Você acertou '}
@@ -69,7 +48,22 @@ class Feedback extends Component {
               </span>
             </h2>
           </div>
->>>>>>> aa7b7b14f1b8f2be44a06d63182e58e6d3122153
+          <Link to="/">
+            <button
+              data-testid="btn-play-again"
+              type="button"
+            >
+              Jogar novamente
+            </button>
+          </Link>
+          <Link to="/ranking">
+            <button
+              data-testid="btn-ranking"
+              type="button"
+            >
+              Ranking
+            </button>
+          </Link>
         </div>
       </>
     );
