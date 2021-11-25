@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeDisable } from '../actions';
 
-const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
+const correctAnswer = (questions, position) => {
+  const { difficulty } = questions[position];
+};
+
+const Buttons = (
+  { correct, incorrects, disable, position, ChangeDisable, questions },
+) => {
   const [couter, setCouter] = useState(0);
 
   useEffect(() => {
@@ -26,7 +32,6 @@ const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
       { correct }
     </button>
   );
-
   const incorrectsBot = incorrects.map((name, index) => (
     <button
       key={ name }
@@ -39,19 +44,15 @@ const Buttons = ({ correct, incorrects, disable, position, ChangeDisable }) => {
       { name }
     </button>
   ));
-
   const metade = 0.5;
   const allAnswers = [correctBot, ...incorrectsBot];
   const shuffled = allAnswers.sort(() => Math.random() - metade);
-
-  return (
-    <div>
-      { shuffled }
-    </div>
-  );
+  return (<div>{ shuffled }</div>);
 };
 
-const mapStateToProps = ({ myReducer: { position } }) => ({ position });
+const mapStateToProps = ({ myReducer: { position, questions } }) => (
+  { position, questions }
+);
 
 const mapDispatchToProps = (dispatch) => ({
   ChangeDisable: (disable) => dispatch(changeDisable(disable)),
