@@ -107,23 +107,28 @@
 }
 
 .answer-button {
+  border-radius: 10px;
+  cursor: pointer;
   font-size: 20px;
   margin: 15px;
   padding: 15px 32px;
-  cursor: pointer;
 }
 
 .correct {
-  border: 3px solid rgb(6, 240, 15);
   background-color: rgb(170, 255, 170);
+  border: 3px solid rgb(6, 240, 15);
+  border-radius: 10px;
   color: black;
+  cursor: not-allowed;
   font-size: 20px;
 }
 
 .incorrect {
-  border: 3px solid red;
   background-color: rgb(255, 170, 170);
+  border: 3px solid red;
+  border-radius: 10px;
   color: black;
+  cursor: not-allowed;
   font-size: 20px;
 }
 

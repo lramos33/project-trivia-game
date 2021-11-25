@@ -1,4 +1,8 @@
-import { ADD_QUESTIONS, CHANGE_DISABLE, NEXT_QUESTIONS, TIME } from '../actions';
+import { ADD_QUESTIONS,
+  CHANGE_DISABLE,
+  NEXT_QUESTIONS,
+  TIME,
+  CLEAR_STATE } from '../actions';
 
 const INITIAL_STATE = {
   questions: [],
@@ -17,6 +21,8 @@ const myReducer = (state = INITIAL_STATE, action) => {
     return { ...state, time: action.time };
   case CHANGE_DISABLE:
     return { ...state, disable: action.disable };
+  case CLEAR_STATE:
+    return INITIAL_STATE;
   default:
     return state;
   }
