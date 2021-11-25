@@ -7,6 +7,14 @@
   min-height: 100vh;
 }
 
+.correct {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.incorrect {
+  border: 3px solid red;
+}
+
 .login-page-input {
   border: 1px solid #ccc;
   border-radius: 4px;

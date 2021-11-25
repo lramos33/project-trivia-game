@@ -18,6 +18,7 @@ export const setToken = async () => {
     .then((res) => res.json())
     .then((res) => res.token);
   localStorage.setItem('token', token);
+  return token;
 };
 
 export const getToken = () => {
@@ -31,7 +32,7 @@ export const getImage = async (email) => {
   const image = await fetch(`https://www.gravatar.com/avatar/${hash}`)
     .then((res) => res.url);
   return image;
-}
+};
 
 export const getLocalStorageItens = () => {
   const userStr = localStorage.getItem('state');
@@ -48,14 +49,3 @@ export const getQuestionAndAnswers = async () => {
 };
 
 export const shuffleArray = (array) => array.sort(() => '0.5' - Math.random());
-
-export const secondShuffleArray = (a) => {
-  var j, x, i;
-  for (i = a.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = a[i];
-      a[i] = a[j];
-      a[j] = x;
-  }
-  return a;
-}
