@@ -11,13 +11,14 @@ class Feedback extends Component {
   }
 
   componentDidMount() {
-    this.getInformations();
+    this.getInformation();
   }
 
-  getInformations() {
+  // Define qual vai ser a mensagem de feedback e add ao estado
+  getInformation() {
     const { player: { assertions } } = getLocalStorageItens();
-    const treis = 3;
-    const feedback = assertions < treis ? 'Podia ser melhor...' : 'Mandou bem!';
+    const three = 3;
+    const feedback = assertions < three ? 'Podia ser melhor...' : 'Mandou bem!';
     this.setState({ feedback });
   }
 

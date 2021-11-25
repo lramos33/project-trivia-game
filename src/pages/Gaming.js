@@ -8,11 +8,10 @@ import { nextQuestion } from '../actions';
 import Buttons from '../components/Buttons';
 
 class Gaming extends Component {
+  // Gera os botões de perguntas
   // Position é a posição da pergunta no array de objetos
-
   alternativeButtonGenerator() {
     const { questions, position, disable } = this.props;
-
     const {
       correct_answer: correctAnswer,
       incorrect_answers: incorrectAnswers,
@@ -22,11 +21,12 @@ class Gaming extends Component {
       <Buttons
         disable={ disable }
         correct={ correctAnswer }
-        incorrects={ incorrectAnswers }
+        incorrect={ incorrectAnswers }
       />
     );
   }
 
+  // Renderiza a página com todos os componentes
   renderPage() {
     const { questions, position, NextQuestion, disable } = this.props;
     const { category, question } = questions[position];
@@ -91,11 +91,11 @@ const mapDispatchToProps = (dispatch) => ({
   NextQuestion: () => dispatch(nextQuestion()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Gaming);
-
 Gaming.propTypes = {
   NextQuestion: PropTypes.func.isRequired,
   questions: PropTypes.string.isRequired,
   position: PropTypes.string.isRequired,
   disable: PropTypes.bool.isRequired,
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Gaming);

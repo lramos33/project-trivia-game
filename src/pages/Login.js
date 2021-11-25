@@ -18,6 +18,7 @@ class Login extends Component {
     };
   }
 
+  // Define nome e email e envia para o estado global e local storage
   onButtonClick() {
     const { name, email } = this.state;
     const { GetQuestions } = this.props;
@@ -25,10 +26,12 @@ class Login extends Component {
     addLocalStorage(name, email);
   }
 
+  // Função input change padrão
   handleChange({ target: { name, value } }) {
     this.setState({ [name]: value });
   }
 
+  // Renderiza os inputs de login
   nameEmailLabels() {
     const { name, email } = this.state;
     return (
@@ -55,7 +58,6 @@ class Login extends Component {
             onChange={ this.handleChange }
           />
         </label>
-
       </>
     );
   }
@@ -86,7 +88,7 @@ class Login extends Component {
               data-testid="btn-settings"
               type="button"
             >
-              <spam>Configurações</spam>
+              Configurações
             </button>
           </Link>
         </fieldset>
@@ -99,8 +101,8 @@ const mapDispatchToProps = (dispatch) => ({
   GetQuestions: () => dispatch(getQuestions()),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
-
 Login.propTypes = {
   GetQuestions: PropTypes.func.isRequired,
 };
+
+export default connect(null, mapDispatchToProps)(Login);
