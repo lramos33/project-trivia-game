@@ -6,6 +6,7 @@ import { getQuestions } from '../actions';
 import { addLocalStorage } from '../services/funcs';
 import triviaImage from '../trivia.png';
 
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -69,6 +70,15 @@ class Login extends Component {
               Jogar
             </button>
           </Link>
+          <Link to="/settings" >
+            <button
+              className="login-page-enter-button"
+              data-testid="btn-settings"
+              type="button"
+            >
+              <spam>Configurações</spam>
+            </button>
+          </Link> 
         </fieldset>
       </body>
     );
