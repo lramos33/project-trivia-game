@@ -11,6 +11,7 @@ class Login extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
+    this.nameEmailLabels = this.nameEmailLabels.bind(this);
     this.state = {
       name: '',
       email: '',
@@ -28,6 +29,37 @@ class Login extends Component {
     this.setState({ [name]: value });
   }
 
+  nameEmailLabels() {
+    const { name, email } = this.state;
+    return (
+      <>
+        <label htmlFor="name" className="login-page-label">
+          Nome
+          <input
+            className="login-page-input"
+            data-testid="input-player-name"
+            id="name"
+            name="name"
+            value={ name }
+            onChange={ this.handleChange }
+          />
+        </label>
+        <label htmlFor="email" className="login-page-label">
+          Email
+          <input
+            className="login-page-input"
+            data-testid="input-gravatar-email"
+            id="Email"
+            name="email"
+            value={ email }
+            onChange={ this.handleChange }
+          />
+        </label>
+
+      </>
+    );
+  }
+
   render() {
     const { name, email } = this.state;
     let isDisable = true;
@@ -36,28 +68,7 @@ class Login extends Component {
       <body className="login-page-body">
         <fieldset className="login-page-fieldset">
           <img src={ triviaImage } alt="triviaImage" className="trivia-image" />
-          <label htmlFor="name" className="login-page-label">
-            Nome
-            <input
-              className="login-page-input"
-              data-testid="input-player-name"
-              id="name"
-              name="name"
-              value={ name }
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="email" className="login-page-label">
-            Email
-            <input
-              className="login-page-input"
-              data-testid="input-gravatar-email"
-              id="Email"
-              name="email"
-              value={ email }
-              onChange={ this.handleChange }
-            />
-          </label>
+          {this.nameEmailLabels()}
           <Link to="/gaming">
             <button
               className="login-page-enter-button"
@@ -69,7 +80,7 @@ class Login extends Component {
               Jogar
             </button>
           </Link>
-          <Link to="/settings" >
+          <Link to="/settings">
             <button
               className="login-page-enter-button"
               data-testid="btn-settings"
@@ -77,7 +88,7 @@ class Login extends Component {
             >
               <spam>Configurações</spam>
             </button>
-          </Link> 
+          </Link>
         </fieldset>
       </body>
     );
