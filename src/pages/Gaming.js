@@ -33,14 +33,20 @@ class Gaming extends Component {
     return (
       <div>
         <Header />
+        <div className="question-answer-content">
+          <div className="question-card">
+            <p data-testid="question-category" className="question-category">
+              { category }
+            </p>
+            <p data-testid="question-text" className="question-content">
+              { question }
+            </p>
+          </div>
+          <div className="answers-card">
+            { this.alternativeButtonGenerator() }
+          </div>
+        </div>
         <Timer />
-        <div className="question-card-game">
-          <p data-testid="question-category">{ category }</p>
-          <p data-testid="question-text">{ question }</p>
-        </div>
-        <div className="answers-card-game">
-          { this.alternativeButtonGenerator() }
-        </div>
         <button
           type="button"
           onClick={ NextQuestion }
