@@ -70,7 +70,7 @@ class Feedback extends Component {
               className="feedback-buttons"
               data-testid="btn-play-again"
               type="button"
-              onClick={ playAgainDispatch() }
+              onClick={ () => playAgainDispatch() }
             >
               Jogar novamente
             </button>
