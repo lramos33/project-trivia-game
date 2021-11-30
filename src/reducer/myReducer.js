@@ -12,6 +12,7 @@ const INITIAL_STATE = {
 };
 
 const myReducer = (state = INITIAL_STATE, action) => {
+  console.log(state);
   switch (action.type) {
   case ADD_QUESTIONS:
     return { ...state, questions: action.questions };
