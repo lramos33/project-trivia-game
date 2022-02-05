@@ -46,7 +46,7 @@ Esse foi um projeto em grupo na qual desenvolvemos um jogo de perguntas e respos
 
 ![image]()
 
-## ✅ Requisitos do projeto
+## 📝 Requisitos do projeto
 
 ### Tela de início/login:
 
